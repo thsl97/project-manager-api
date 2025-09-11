@@ -4,6 +4,10 @@ import { GetProjectByIdService } from './get-project-by-id.service';
 import { CreateProjectService } from './create-project.service';
 
 @Module({
-  providers: [GetAllProjectsService, GetProjectByIdService, CreateProjectService]
+  providers: [
+    GetAllProjectsService,
+    GetProjectByIdService,
+    CreateProjectService,
+  ],
 })
 export class ProjectsModule {}

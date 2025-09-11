@@ -5,6 +5,11 @@ import { CreateTaskService } from './create-task.service';
 import { UpdateTaskService } from './update-task.service';
 
 @Module({
-  providers: [GetAllTasksService, GetTaskByIdService, CreateTaskService, UpdateTaskService]
+  providers: [
+    GetAllTasksService,
+    GetTaskByIdService,
+    CreateTaskService,
+    UpdateTaskService,
+  ],
 })
 export class TasksModule {}
