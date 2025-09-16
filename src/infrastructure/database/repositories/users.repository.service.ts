@@ -16,6 +16,7 @@ export class UsersRepositoryService
   findById(id: number): Promise<IUser> {
     return this.findOneByOrFail({ id });
   }
+
   add(payload: DeepPartial<IUser>): Promise<IUser> {
     return this.save(payload) as Promise<IUser>;
   }

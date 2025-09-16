@@ -9,7 +9,7 @@ export class CreateUserService implements BaseUseCase {
   constructor(private readonly usersRepository: UsersRepositoryService) {}
 
   async execute(user: CreateUserDTO): Promise<IUser> {
-    const createdUser = await this.usersRepository.create(user);
+    const createdUser = await this.usersRepository.add(user);
 
     if (!createdUser) {
       throw new Error('User could not be created');
