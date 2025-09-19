@@ -9,7 +9,7 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { UserEntity } from './user.entity';
-import { TaskEntity } from 'apps/tasks/src/infrastructure/database/entities/task.entity';
+import { TaskEntity } from 'apps/tasks/src/infrastructure/entities/task.entity';
 import { ITask } from 'apps/tasks/src/domain/interfaces/task.interface';
 
 @Entity('projects')

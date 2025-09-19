@@ -9,19 +9,13 @@ import { CreateTaskService } from '../../domain/use-cases/tasks/create-task.serv
 import { MessagePattern, Payload } from '@nestjs/microservices';
 import { CreateTaskDTO } from './dtos/create-task.dto';
 
-@Controller('tasks')
+@Controller()
 export class TasksController {
   constructor(
     private readonly getAllTasksUseCase: GetAllTasksService,
     private readonly getTaskByIdUseCase: GetTaskByIdService,
     private readonly createTaskUseCase: CreateTaskService,
   ) {}
-
-  @MessagePattern({ cmd: 'ping' })
-  async ping(@Payload() data: { message: string }) {
-    console.log('Received ping', data.message);
-    return 'pong';
-  }
 
   @MessagePattern({ cmd: 'get_tasks' })
   async findAll(@Payload() data: { userId: number }) {
@@ -49,14 +43,18 @@ export class TasksController {
   }
 
   @MessagePattern({ cmd: 'create_task' })
-  async create(@Payload() data: { userId: number; task: CreateTaskDTO }) {
+  async create(@Payload() data: { task: CreateTaskDTO; userId: number }) {
     try {
       console.log('received create_task message');
-
-      return await this.createTaskUseCase.execute({
+      
+      const result = await this.createTaskUseCase.execute({
         userId: data.userId,
         task: data.task,
       });
+
+      console.log(result);
+
+      return result;
     } catch (error) {
       throw new UnprocessableEntityException(error.message);
     }

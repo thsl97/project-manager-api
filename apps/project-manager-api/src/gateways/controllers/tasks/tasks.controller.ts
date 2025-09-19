@@ -18,20 +18,13 @@ export class TasksController {
     @Inject('PROJECTS_MANAGER_API') private readonly redisClient: ClientProxy,
   ) {}
 
-  @Get('ping')
-  async ping() {
-    console.log('sending ping');
-    const result = this.redisClient.send({ cmd: 'ping' }, { message: 'Hello' });
-    console.log(result);
-
-    return result;
-  }
-
   @Get()
   async findAll(@Req() request) {
     try {
       const loggedUser = request.user;
 
+      console.log('Retrieving tasks from task microservice');
+      
       return this.redisClient.send(
         { cmd: 'get_tasks' },
         { userId: loggedUser.sub },

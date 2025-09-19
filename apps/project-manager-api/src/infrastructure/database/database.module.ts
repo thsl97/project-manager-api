@@ -4,14 +4,14 @@ import { ProjectsRepositoryService } from './repositories/projects.repository.se
 import { UsersRepositoryService } from './repositories/users.repository.service';
 import { UserEntity } from './entities/user.entity';
 import { ProjectEntity } from './entities/project.entity';
-import { TaskEntity } from 'apps/tasks/src/infrastructure/database/entities/task.entity';
+import { TaskEntity } from 'apps/tasks/src/infrastructure/entities/task.entity';
 
 @Module({
   imports: [
     TypeOrmModule.forFeature([UserEntity, ProjectEntity, TaskEntity]),
     TypeOrmModule.forRoot({
       type: 'sqlite',
-      database: 'db.sqlite',
+      database: 'db/sql.sqlite',
       entities: ['dist/**/*.entity{.ts,.js}'],
       synchronize: true,
       autoLoadEntities: true,

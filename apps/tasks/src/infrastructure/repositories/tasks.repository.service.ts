@@ -21,8 +21,13 @@ export class TasksRepositoryService
     return this.findOneByOrFail({ id });
   }
 
-  add(payload: DeepPartial<ITask>): Promise<ITask> {
-    return this.save(payload) as Promise<ITask>;
+  async add(payload: DeepPartial<ITask>): Promise<ITask> {
+    try {
+      return this.save(payload);
+    } catch (error) {
+      console.error(error);
+      throw new Error('Error adding task');
+    }
   }
 
   updateById(payload: DeepPartial<ITask>) {

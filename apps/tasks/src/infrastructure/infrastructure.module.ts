@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { TaskEntity } from './database/entities/task.entity';
+import { TaskEntity } from './entities/task.entity';
+import { TasksRepositoryService } from './repositories/tasks.repository.service';
 import { ProjectEntity } from '@project-manager-api/infrastructure/database/entities/project.entity';
 import { UserEntity } from '@project-manager-api/infrastructure/database/entities/user.entity';
-import { TasksRepositoryService } from './database/repositories/tasks.repository.service';
 
 @Module({
   imports: [

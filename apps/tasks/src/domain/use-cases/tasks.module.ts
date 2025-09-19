@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { InfrastructureModule } from 'apps/tasks/src/infrastructure/infrastructure.module';
-import { GetAllTasksService } from './get-all-tasks.service';
-import { GetTaskByIdService } from './get-task-by-id.service';
-import { CreateTaskService } from './create-task.service';
-import { UpdateTaskService } from './update-task.service';
+import { GetAllTasksService } from './tasks/get-all-tasks.service';
+import { GetTaskByIdService } from './tasks/get-task-by-id.service';
+import { CreateTaskService } from './tasks/create-task.service';
+import { UpdateTaskService } from './tasks/update-task.service';
 
 @Module({
   imports: [InfrastructureModule],

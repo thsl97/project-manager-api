@@ -56,4 +56,4 @@ pids
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
 # sqlite local db
-db.sqlite
+db/sql.sqlite
