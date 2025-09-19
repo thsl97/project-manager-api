@@ -1,0 +1,26 @@
+services:
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - redis-net
+  redis-insight:
+    image: redis/redisinsight
+    ports:
+      - "5540:5540"
+    volumes:
+      - redisinsight:/data
+    networks:
+      - redis-net
+    depends_on:
+      - redis
+volumes:
+  redis-data:
+    driver: local
+  redisinsight:
+networks:
+  redis-net:
+    driver: bridge
