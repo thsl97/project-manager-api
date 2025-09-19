@@ -7,12 +7,12 @@ import { AuthController } from './auth/auth.controller';
 import { AuthModule } from 'src/infrastructure/auth/auth.module';
 
 @Module({
+  imports: [UseCasesModule, AuthModule],
   controllers: [
     ProjectsController,
     TasksController,
     UsersController,
     AuthController,
   ],
-  imports: [UseCasesModule, AuthModule],
 })
 export class ControllersModule {}

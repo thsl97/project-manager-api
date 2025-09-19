@@ -14,7 +14,10 @@ export class CreateUserService implements BaseUseCase {
   async execute(user: CreateUserDTO): Promise<IUser> {
     const hashedPassword = await hash(user.password, this.DEFAULT_SALT_ROUNDS);
 
-    const createdUser = await this.usersRepository.add({...user, password: hashedPassword});
+    const createdUser = await this.usersRepository.add({
+      ...user,
+      password: hashedPassword,
+    });
 
     if (!createdUser) {
       throw new Error('User could not be created');

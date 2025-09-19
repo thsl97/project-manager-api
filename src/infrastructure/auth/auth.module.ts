@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { JwtModule } from '@nestjs/jwt';
 import { UsersModule } from 'src/domain/use-cases/users/users.module';
 import { jwtConstants } from './constants';
-import { AuthService } from 'src/–-flat/infrastructure/auth/auth/auth.service';
+import { AuthService } from './auth.service';
 
 @Module({
   imports: [
@@ -14,6 +14,6 @@ import { AuthService } from 'src/–-flat/infrastructure/auth/auth/auth.service'
     }),
   ],
   providers: [AuthService],
-  exports: [JwtModule],
+  exports: [AuthService],
 })
 export class AuthModule {}
