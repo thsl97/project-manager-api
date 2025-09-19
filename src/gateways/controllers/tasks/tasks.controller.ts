@@ -5,6 +5,7 @@ import {
   NotFoundException,
   Param,
   Post,
+  Req,
   UnprocessableEntityException,
 } from '@nestjs/common';
 import { CreateTaskService } from 'src/domain/use-cases/tasks/create-task.service';
@@ -23,19 +24,23 @@ export class TasksController {
   ) {}
 
   @Get()
-  async findAll() {
+  async findAll(@Req() request) {
     try {
-      return await this.getAllTasksUseCase.execute({ userId });
+      const loggedUser = request.user;
+
+      return await this.getAllTasksUseCase.execute({ userId: loggedUser.sub });
     } catch (error) {
       throw new NotFoundException(error.message);
     }
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: number) {
+  async findOne(@Req() request, @Param('id') id: number) {
     try {
+      const loggedUser = request.user;
+
       return await this.getTaskByIdUseCase.execute({
-        userId,
+        userId: loggedUser.sub,
         taskId: id,
       });
     } catch (error) {
@@ -44,10 +49,12 @@ export class TasksController {
   }
 
   @Post()
-  async create(@Body() createTaskDto: CreateTaskDTO) {
+  async create(@Req() request, @Body() createTaskDto: CreateTaskDTO) {
     try {
+      const loggedUser = request.user;
+
       return await this.createTaskUseCase.execute({
-        userId,
+        userId: loggedUser.sub,
         task: createTaskDto,
       });
     } catch (error) {

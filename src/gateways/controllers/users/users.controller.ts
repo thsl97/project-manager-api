@@ -10,6 +10,7 @@ import {
 import { GetUserByIdService } from 'src/domain/use-cases/users/get-user-by-id.service';
 import { CreateUserDTO } from './dtos/create-user.dto';
 import { CreateUserService } from 'src/domain/use-cases/users/create-user.service';
+import { Public } from 'src/gateways/guards/auth-guard.service';
 
 @Controller('users')
 export class UsersController {
@@ -28,6 +29,7 @@ export class UsersController {
   }
 
   @Post()
+  @Public()
   async create(@Body() createUserDto: CreateUserDTO) {
     try {
       return await this.createUserUseCase.execute({ ...createUserDto });
